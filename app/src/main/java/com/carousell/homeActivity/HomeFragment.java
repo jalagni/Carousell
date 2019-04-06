@@ -112,7 +112,6 @@ public class HomeFragment extends BaseFragment
 
     @Override
     public void onArticleRecieved(ArrayList<ArticleModel> listModel) {
-        Timber.e("Size: "+listModel.size());
         aAdapter.setContent(listModel);
     }
 

@@ -2,10 +2,10 @@ package com.carousell.homeActivity;
 
 import com.carousell.appCore.BasePresenter;
 import com.carousell.appCore.ViewContract;
-import com.carousell.data.dataModel.ArticleModel;
-import com.carousell.data.dataModel.ResponseModel;
 import com.carousell.domain.ArticleUseCase;
 import com.carousell.domain.DefaultObserver;
+import com.carousell.data.dataModel.ArticleModel;
+import com.carousell.data.dataModel.ResponseModel;
 
 import java.util.ArrayList;
 
@@ -23,13 +23,6 @@ public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePrese
 
     public void getArticleList() {
         articleUseCase.execute(new ArticleObserver(), ArticleUseCase.Params.getArticle());
-    }
-
-
-
-    @Override
-    public void onNext(ResponseModel rModel) {
-
     }
 
 
@@ -51,7 +44,8 @@ public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePrese
 
         @Override public void onNext(Object obj) {
             ResponseModel rModel = (ResponseModel) obj;
-            HomePresenterImpl.this.getViewContract().onArticleRecieved((ArrayList<ArticleModel>) rModel.response);
+            ArrayList aList = (ArrayList<ArticleModel>) rModel.response;
+            HomePresenterImpl.this.getViewContract().onArticleRecieved(aList);
         }
     }
 

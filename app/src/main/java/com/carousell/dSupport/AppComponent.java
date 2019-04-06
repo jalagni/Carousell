@@ -4,6 +4,7 @@ package com.carousell.dSupport;
 
 import android.content.Context;
 
+import com.carousell.data.injector.AppNetwork;
 import com.carousell.domain.executor.PostExecutionThread;
 import com.carousell.domain.executor.ThreadExecutor;
 import com.carousell.domain.repository.ArticleRepository;
@@ -13,7 +14,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {ApplicationModule.class})
+@Component(modules = {ApplicationModule.class, AppNetwork.class})
 public interface AppComponent {
 
     void inject(MainApp app);

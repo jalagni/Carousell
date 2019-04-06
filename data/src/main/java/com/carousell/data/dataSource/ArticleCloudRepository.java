@@ -1,7 +1,5 @@
 package com.carousell.data.dataSource;
 
-import com.carousell.data.injector.AppNetwork;
-import com.carousell.data.injector.DaggerDataComponent;
 import com.carousell.data.network.ApiService;
 import com.carousell.domain.repository.ArticleRepository;
 
@@ -15,21 +13,18 @@ import timber.log.Timber;
 
 public class ArticleCloudRepository implements ArticleRepository {
 
-    private ApiService apiService;
+    private ApiService apiservice;
 
     @Inject
-    public ArticleCloudRepository(){
+    public ArticleCloudRepository(ApiService aService){
 
-        AppNetwork appNetwork = new AppNetwork();
-        OkHttpClient client= appNetwork.getHttpClient(appNetwork.getRequestIntercept());
-        apiService = new ApiService(appNetwork.getRetrofit(client));
-
-        Timber.e("apiService: "+apiService);
+        this.apiservice = aService;
+        Timber.e("apiService: "+aService);
 
     }
 
     @Override
     public Observable<List<Object>> getArticles() {
-        return apiService.getArticleList();
+        return apiservice.getArticleList();
     }
 }

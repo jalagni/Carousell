@@ -30,7 +30,7 @@ ext {
     circleView = "de.hdodenhof:circleimageview:2.2.0"
 
     //RxJava
-    rxJava = "io.reactivex.rxjava2:rxkotlin:${rxJavaSupport}"
+    rxJava = "io.reactivex.rxjava2:rxjava:${rxJavaSupport}"
     rxAndroid =         "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
 
     //Test Support
