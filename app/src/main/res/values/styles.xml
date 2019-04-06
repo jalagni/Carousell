@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="textTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textTitle</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+
+    <style name="text">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/text</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Carousell</string>
+    <string name="home">Home</string>
+    <string name="click">Click</string>
+    <string name="confirmMessage">Are you sure you want to leave this application ?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="reload">Fetch</string>
+    <string name="action_settings">Setting</string>
+    <string name="action_recent">Recent</string>
+    <string name="action_popular">Popular</string>
+    <string name="yearsAgo">%1$d years ago</string>
+    <string name="monthsAgo">%1$d months ago</string>
+    <string name="weeksAgo">%1$d weeks ago</string>
+    <string name="daysAgo">%1$d days ago</string>
+</resources>
