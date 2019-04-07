@@ -1,9 +1,7 @@
 package com.carousell.data;
 
-import com.carousell.data.dataModel.DomainDataMapper;
 import com.carousell.data.dataSource.ArticleCloudRepository;
 import com.carousell.data.network.ApiService;
-import com.carousell.domain.utils.DomainHelper;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +13,6 @@ import io.reactivex.Observable;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 

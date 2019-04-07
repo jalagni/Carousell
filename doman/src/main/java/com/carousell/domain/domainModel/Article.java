@@ -1,6 +1,5 @@
 package com.carousell.domain.domainModel;
 
-import com.carousell.domain.comm.ResponseMarker;
 
 public class Article {
 
