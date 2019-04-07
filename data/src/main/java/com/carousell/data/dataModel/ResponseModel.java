@@ -1,6 +1,5 @@
 package com.carousell.data.dataModel;
 
-
 import com.carousell.data.dataConst.HttpConst;
 import com.carousell.domain.comm.ResponseMarker;
 

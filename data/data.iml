@@ -176,7 +176,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-library:1.3@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.assertj:assertj-core:1.7.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.0.0@jar" level="project" />
-    <orderEntry type="module" module-name="doman" />
-    <orderEntry type="module" module-name="doman" />
+    <orderEntry type="module" module-name="domain" />
   </component>
 </module>

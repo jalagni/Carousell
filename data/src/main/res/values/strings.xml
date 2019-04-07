@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Data</string>
     <string name="check_internet">Check Internet</string>
-    <string name="tryLater">Rey Again Later</string>
+    <string name="tryLater">Try Again Later</string>
 </resources>

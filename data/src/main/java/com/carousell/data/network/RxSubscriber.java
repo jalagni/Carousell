@@ -1,13 +1,12 @@
 package com.carousell.data.network;
 
-
 import android.content.Context;
-
 import com.carousell.data.R;
 import com.carousell.data.dataConst.HttpConst;
 import com.carousell.data.dataModel.ResponseModel;
 import com.carousell.data.exception.NetworkError;
 import com.carousell.data.utils.HttpUtils;
+import com.carousell.domain.comm.ResponseMarker;
 
 import io.reactivex.Emitter;
 import io.reactivex.ObservableEmitter;
@@ -19,7 +18,7 @@ import retrofit2.Response;
 public class RxSubscriber implements ObservableOnSubscribe, Callback {
 
     private HttpConst.Request rType;
-    private Call<ResponseModel> callRequest;
+    private Call<ResponseMarker> callRequest;
     private Context context;
     private Emitter emitter;
 
@@ -38,6 +37,9 @@ public class RxSubscriber implements ObservableOnSubscribe, Callback {
             emitter.onError(nError);
             return;
         }
+
+//        ResponseModel rModel = new ResponseModel(rType,response.body());
+//        emitter.onNext(rModel);
 
         emitter.onNext(response.body());
         emitter.onComplete();
