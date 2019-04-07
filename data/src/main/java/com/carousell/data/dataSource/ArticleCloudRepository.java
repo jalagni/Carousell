@@ -2,6 +2,7 @@ package com.carousell.data.dataSource;
 
 import com.carousell.data.dataModel.ArticleModel;
 import com.carousell.data.network.ApiService;
+import com.carousell.domain.comm.ResponseMarker;
 import com.carousell.domain.domainModel.Article;
 import com.carousell.domain.repository.ArticleRepository;
 
@@ -21,16 +22,20 @@ public class ArticleCloudRepository implements ArticleRepository {
         this.apiservice = aService;
     }
 
+
     @Override
-    public Observable<List<Article>> getArticles() {
-        return apiservice.getArticleList().map(list->{
+    public Observable<ResponseMarker> getArticles() {
+        return apiservice.getArticleList().map(rModel->{
+
+            ArrayList<ArticleModel> aList = (ArrayList<ArticleModel>) rModel.getResponse();
 
             List<Article> dest = new ArrayList<>();
-            for (ArticleModel aModel : list) {
+            for (ArticleModel aModel : aList) {
                 dest.add(aModel);
             }
-            return dest;
+            return rModel;
 
         });
     }
+
 }

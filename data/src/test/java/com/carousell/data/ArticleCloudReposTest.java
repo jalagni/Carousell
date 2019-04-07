@@ -23,12 +23,11 @@ public class ArticleCloudReposTest {
 
 
     @Mock private ApiService mockApiService;
-    @Mock private DomainDataMapper mockDataMapper;
     @Mock private Observable observable;
 
     @Before
     public void setup(){
-        articleCloudRepository = new ArticleCloudRepository(mockApiService,mockDataMapper);
+        articleCloudRepository = new ArticleCloudRepository(mockApiService);
     }
 
     @Test

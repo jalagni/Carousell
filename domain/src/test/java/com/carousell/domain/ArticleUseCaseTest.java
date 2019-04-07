@@ -37,7 +37,7 @@ public class ArticleUseCaseTest {
     @Mock private ThreadExecutor mockThreadExecutor;
     @Mock private PostExecutionThread mockPostExecutionThread;
     @Mock private DomainHelper dHelper;
-    @Mock Observable<List<Article>> observeList;
+    @Mock Observable observeList;
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();

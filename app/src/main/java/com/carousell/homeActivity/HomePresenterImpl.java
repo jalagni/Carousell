@@ -4,8 +4,6 @@ import com.carousell.appCore.BasePresenter;
 import com.carousell.appCore.ViewContract;
 import com.carousell.domain.ArticleUseCase;
 import com.carousell.domain.DefaultObserver;
-import com.carousell.data.dataModel.ArticleModel;
-import com.carousell.data.dataModel.ResponseModel;
 import com.carousell.domain.comm.ResponseMarker;
 import com.carousell.domain.domainModel.Article;
 
@@ -42,7 +40,7 @@ public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePrese
         attachView(null);
     }
 
-    private final class ArticleObserver extends DefaultObserver<Object> {
+    private final class ArticleObserver extends DefaultObserver<ResponseMarker> {
 
         @Override
         public void onComplete() {
@@ -56,8 +54,8 @@ public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePrese
         }
 
         @Override
-        public void onNext(Object rModel) {
-            ArrayList aList = (ArrayList<Article>) rModel;
+        public void onNext(ResponseMarker rModel) {
+            ArrayList aList = (ArrayList<Article>) rModel.getResponse();
             HomePresenterImpl.this.getViewContract().onArticleRecieved(aList);
         }
     }

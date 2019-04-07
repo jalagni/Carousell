@@ -38,10 +38,10 @@ public class RxSubscriber implements ObservableOnSubscribe, Callback {
             return;
         }
 
-//        ResponseModel rModel = new ResponseModel(rType,response.body());
-//        emitter.onNext(rModel);
+        ResponseModel rModel = new ResponseModel(rType,response.body());
+        emitter.onNext(rModel);
 
-        emitter.onNext(response.body());
+//        emitter.onNext(response.body());
         emitter.onComplete();
     }
 

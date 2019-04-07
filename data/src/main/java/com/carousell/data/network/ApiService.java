@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.carousell.data.dataConst.HttpConst;
 import com.carousell.data.dataModel.ArticleModel;
+import com.carousell.data.dataModel.ResponseModel;
+import com.carousell.domain.comm.ResponseMarker;
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class ApiService {
     }
 
 
-    public Observable<List<ArticleModel>> getArticleList() {
+    public Observable<ResponseMarker> getArticleList() {
 
         Call callRequest = apiStructure.getArticleList();
         RxSubscriber rxSubscriber = new RxSubscriber(context,
