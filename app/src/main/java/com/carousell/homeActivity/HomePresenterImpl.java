@@ -26,6 +26,7 @@ public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePrese
 
 
     public void getArticleList() {
+        getViewContract().showLoader();
         articleUseCase.execute(new ArticleObserver(), ArticleUseCase.Params.getArticle());
     }
 
