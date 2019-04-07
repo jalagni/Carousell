@@ -2,14 +2,19 @@
 
 
 Clean Architecture
-  **Presentation Layer <- Modules [Data,Domain]** <br/>
+  **Presentation Layer(app) <- Modules [Data,Domain]** <br/>
        * MVP for View, Model Interaction <br/>
-         - HomePreseterImpl <- ViewContract <br/>
+         + HomePreseterImpl <- ViewContract <br/>
 
   **Data  <-  Module [Domain]** <br/>
        * Network <br/>
-         - ArticleCloudRepository <br/>
+         +  ArticleCloudRepository <br/>
 
   **Domain** <br/>
        * UseCases has been defined <br/>
-         - ArticleUseCase <br/>
+         +  ArticleUseCase <br/>
+
+
+- Domain, Data, app  basic test cases has been integrated.       
+         
+   
