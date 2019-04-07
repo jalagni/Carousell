@@ -25,7 +25,6 @@ public class ArticleCloudRepository implements ArticleRepository {
 
         this.apiservice = aService;
         this.dataMapper = dataMapper;
-        Timber.e("apiService: " + aService);
     }
 
     @Override

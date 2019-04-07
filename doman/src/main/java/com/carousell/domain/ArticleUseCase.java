@@ -32,17 +32,15 @@ public class ArticleUseCase extends UseCase<Object, ArticleUseCase.Params> {
 
     @Override
     public Observable buildUseCaseObservable(Params param) {
-        return this.articleRepository.getArticles().map(this::transform);
+        return this.articleRepository.getArticles().map( list ->{
+            for (Article aModel : list) {
+                aModel.setFormateDate(dHelper.getReadableDate(aModel.getTime_created()));
+            }
+            return list;
+        });
     }
 
 
-    public List<Article> transform(List<Article> aList) {
-
-        for (Article aModel : aList) {
-            aModel.setFormateDate(dHelper.getReadableDate(aModel.getTime_created()));
-        }
-        return aList;
-    }
 
     public static final class Params {
 

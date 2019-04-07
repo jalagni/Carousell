@@ -15,6 +15,7 @@ ext {
     daggerVersion = '2.11'
     rxJavaSupport = '2.0.2'
     rxAndroidVersion = '2.0.1'
+    assertJVersion = '1.7.1'
 
     //Support
     appCompat = "com.android.support:appcompat-v7:${designVersion}"
@@ -40,13 +41,13 @@ ext {
     mocitoAndroid = "org.mockito:mockito-android:${mockitoVersion}"
     hamcrest = "org.hamcrest:hamcrest-library:${hamcrestVersion}"
     esperesso = "com.android.support.test.espresso:espresso-core:${espressoVersion}"
-    powerMock = "org.powermock:powermock-module-junit4:${testRulesVersion}"
-    powerMockRule = "org.powermock:powermock-module-junit4-rule:${testRulesVersion}"
-    powerMockApi = "org.powermock:powermock-api-mockito:${testRulesVersion}"
-    powerMockXstream = "org.powermock:powermock-classloading-xstream:${testRulesVersion}"
+//    powerMock = "org.powermock:powermock-module-junit4:${testRulesVersion}"
+//    powerMockRule = "org.powermock:powermock-module-junit4-rule:${testRulesVersion}"
+//    powerMockApi = "org.powermock:powermock-api-mockito:${testRulesVersion}"
+//    powerMockXstream = "org.powermock:powermock-classloading-xstream:${testRulesVersion}"
+    assertj =            "org.assertj:assertj-core:${assertJVersion}"
 
     //Dagger Support
-
     dagger = "com.google.dagger:dagger:$daggerVersion"
     daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
     daggerAndroid = "com.google.dagger:dagger-android:$daggerVersion"
@@ -116,8 +117,7 @@ ext {
 
     unitTestsDependencies = [
             [configuration: "testImplementation", dependency: jUnit],
-            [configuration: "testImplementation", dependency: testRunner],
-            [configuration: "testImplementation", dependency: powerMock]
+            [configuration: "testImplementation", dependency: testRunner]
     ]
 
     instrumentationTestsDependencies = [
@@ -126,7 +126,7 @@ ext {
             [configuration: "androidTestImplementation", dependency: hamcrest],
             [configuration: "androidTestImplementation", dependency: esperesso],
             [configuration: "androidTestImplementation", dependency: testRunner],
-            [configuration: "androidTestImplementation", dependency: powerMock]
+            [configuration: "androidTestImplementation", dependency: assertj]
     ]
 
 }

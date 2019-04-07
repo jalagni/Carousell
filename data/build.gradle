@@ -43,5 +43,10 @@ dependencies {
     rootProject.unitTestsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
+
+    rootProject.instrumentationTestsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+
     implementation project(':doman')
 }

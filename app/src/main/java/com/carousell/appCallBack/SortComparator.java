@@ -21,10 +21,10 @@ public class SortComparator implements Comparator<Article> {
 
         switch (cType){
             case DATE:
-                return a1.getTime_created() - a2.getTime_created() ;
+                return a2.getTime_created() - a1.getTime_created() ;
             case POPULAR:
                 int diff = a1.getRank() - a2.getRank();
-                return (diff != 0) ? diff: a1.getTime_created() - a2.getTime_created() ;
+                return (diff != 0) ? diff: a2.getTime_created() - a1.getTime_created() ;
         }
 
         return 0;
