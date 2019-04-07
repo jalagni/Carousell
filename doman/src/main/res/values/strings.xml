@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Domain</string>
-
-    <string name="yearsAgo">%1$d years ago</string>
-    <string name="monthsAgo">%1$d months ago</string>
-    <string name="weeksAgo">%1$d weeks ago</string>
-    <string name="daysAgo">%1$d days ago</string>
-
-</resources>
