@@ -1,6 +1,8 @@
 package com.carousell.data.network;
 
 
+import android.content.Context;
+
 import com.carousell.data.dataConst.HttpConst;
 import com.carousell.data.dataModel.ArticleModel;
 
@@ -17,40 +19,24 @@ import retrofit2.http.GET;
 public class ApiService {
 
     private ApiStructure apiStructure;
+    private Context context;
 
     @Inject
-    public ApiService(Retrofit retrofit) {
+    public ApiService(Retrofit retrofit, Context context) {
         apiStructure = retrofit.create(ApiStructure.class);
+        this.context = context.getApplicationContext();
     }
 
 
-    public Observable getArticleList() {
+    public Observable<List<ArticleModel>> getArticleList() {
+
         Call callRequest = apiStructure.getArticleList();
-        return createRequest(callRequest, HttpConst.Request.ARTICLE_REQUEST);
+        RxSubscriber rxSubscriber = new RxSubscriber(context,
+                callRequest, HttpConst.Request.ARTICLE_REQUEST);
+
+        return Observable.create(rxSubscriber);
     }
 
-
-    private Observable<Object> createRequest(Call<Object> call, HttpConst.Request rType) {
-
-        RxSubscriber rxSubscriber = new RxSubscriber(call, rType);
-        Observable observable = Observable.create(rxSubscriber)
-                .doOnError(throwable -> onRequestFinish())
-                .doOnComplete(() -> onRequestFinish())
-                .doOnSubscribe(disposable -> onRequestStart());
-
-        return observable;
-
-    }
-
-
-    private void onRequestStart() {
-
-    }
-
-
-    private void onRequestFinish() {
-
-    }
 
     interface ApiStructure {
         @GET("carousell-interview-assets/android/carousell_news.json")

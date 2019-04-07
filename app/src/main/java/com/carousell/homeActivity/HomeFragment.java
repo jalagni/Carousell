@@ -16,6 +16,7 @@ import com.carousell.appCallBack.SortComparator;
 import com.carousell.appCore.BaseFragment;
 import com.carousell.data.dataModel.ArticleModel;
 import com.carousell.databinding.FragmentHomeBinding;
+import com.carousell.domain.domainModel.Article;
 
 import java.util.ArrayList;
 
@@ -78,7 +79,7 @@ public class HomeFragment extends BaseFragment
 
     @Override
     public void showMessage(String msg) {
-        Toast.makeText(bActivity, msg, Toast.LENGTH_SHORT);
+        Toast.makeText(bActivity, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -86,7 +87,6 @@ public class HomeFragment extends BaseFragment
         layoutHomeBinding.rArticle.setAdapter(aAdapter);
         hPresenter.getArticleList();
     }
-
 
 
     @Override
@@ -109,9 +109,8 @@ public class HomeFragment extends BaseFragment
     }
 
 
-
     @Override
-    public void onArticleRecieved(ArrayList<ArticleModel> listModel) {
+    public void onArticleRecieved(ArrayList<Article> listModel) {
         aAdapter.setContent(listModel);
     }
 
@@ -119,5 +118,11 @@ public class HomeFragment extends BaseFragment
     @Override
     public void listCall(int type, Object object) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hPresenter.deAttachView();
     }
 }

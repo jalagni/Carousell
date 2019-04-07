@@ -1,5 +1,7 @@
 package com.carousell;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.carousell.appSupport.NavMngr;
 import com.carousell.databinding.ActivityMainBinding;
 import com.carousell.homeActivity.HomeFragment;
 
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import timber.log.Timber;
 
@@ -26,12 +29,17 @@ public class MainActivity extends BaseActivity {
         aBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(aBinding.toolbar);
 
+
         initActivity();
 
     }
 
-    private void initActivity(){
+    private void initActivity() {
         getSupportActionBar().setTitle(getString(R.string.app_name));
+
+        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.menu);
+        aBinding.toolbar.setOverflowIcon(drawable);
+
     }
 
     @Override

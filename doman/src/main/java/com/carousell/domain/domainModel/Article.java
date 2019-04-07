@@ -1,12 +1,16 @@
-package com.carousell.data.dataModel;
+package com.carousell.domain.domainModel;
 
-public class ArticleModel {
+import com.carousell.domain.comm.ResponseMarker;
+
+public class Article {
+
     private String description;
     private int time_created;
     private int rank;
     private String banner_url;
     private String id;
     private String title;
+    private String formateDate;
 
     public String getDescription() {
         return this.description;
@@ -56,4 +60,11 @@ public class ArticleModel {
         this.title = title;
     }
 
+    public String getFormateDate() {
+        return formateDate;
+    }
+
+    public void setFormateDate(String formateDate) {
+        this.formateDate = formateDate;
+    }
 }

@@ -6,10 +6,14 @@ import com.carousell.domain.ArticleUseCase;
 import com.carousell.domain.DefaultObserver;
 import com.carousell.data.dataModel.ArticleModel;
 import com.carousell.data.dataModel.ResponseModel;
+import com.carousell.domain.comm.ResponseMarker;
+import com.carousell.domain.domainModel.Article;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+
+import timber.log.Timber;
 
 public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePresenter> {
 
@@ -27,24 +31,32 @@ public class HomePresenterImpl extends BasePresenter<HomePresenterImpl.HomePrese
 
 
     public interface HomePresenter extends ViewContract {
-        void onArticleRecieved(ArrayList<ArticleModel> tModel);
+        void onArticleRecieved(ArrayList<Article> tModel);
     }
 
 
+    @Override
+    public void deAttachView() {
+        articleUseCase.dispose();
+        attachView(null);
+    }
+
     private final class ArticleObserver extends DefaultObserver<Object> {
 
-        @Override public void onComplete() {
+        @Override
+        public void onComplete() {
             HomePresenterImpl.this.getViewContract().hideLoader();
         }
 
-        @Override public void onError(Throwable e) {
+        @Override
+        public void onError(Throwable e) {
             HomePresenterImpl.this.getViewContract().hideLoader();
             HomePresenterImpl.this.getViewContract().showMessage(e.getMessage());
         }
 
-        @Override public void onNext(Object obj) {
-            ResponseModel rModel = (ResponseModel) obj;
-            ArrayList aList = (ArrayList<ArticleModel>) rModel.response;
+        @Override
+        public void onNext(Object rModel) {
+            ArrayList aList = (ArrayList<Article>) rModel;
             HomePresenterImpl.this.getViewContract().onArticleRecieved(aList);
         }
     }

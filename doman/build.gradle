@@ -35,16 +35,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    rootProject.app.each { item ->
+
+    rootProject.domain.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
-    rootProject.appSupport.each { item ->
-        add(item.configuration, item.dependency, item.options)
-    }
-    rootProject.annotationProcessorsDependencies.each { item ->
-        add(item.configuration, item.dependency, item.options)
-    }
+
     rootProject.unitTestsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+
+    rootProject.instrumentationTestsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
 }

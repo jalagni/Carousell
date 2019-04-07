@@ -1,6 +1,9 @@
 package com.carousell.data.dataSource;
 
+import com.carousell.data.dataModel.ArticleModel;
+import com.carousell.data.dataModel.DomainDataMapper;
 import com.carousell.data.network.ApiService;
+import com.carousell.domain.domainModel.Article;
 import com.carousell.domain.repository.ArticleRepository;
 
 import java.util.List;
@@ -15,16 +18,18 @@ public class ArticleCloudRepository implements ArticleRepository {
 
     private ApiService apiservice;
 
+    private DomainDataMapper dataMapper;
+
     @Inject
-    public ArticleCloudRepository(ApiService aService){
+    public ArticleCloudRepository(ApiService aService, DomainDataMapper dataMapper) {
 
         this.apiservice = aService;
-        Timber.e("apiService: "+aService);
-
+        this.dataMapper = dataMapper;
+        Timber.e("apiService: " + aService);
     }
 
     @Override
-    public Observable<List<Object>> getArticles() {
-        return apiservice.getArticleList();
+    public Observable<List<Article>> getArticles() {
+        return apiservice.getArticleList().map(this.dataMapper::transform);
     }
 }

@@ -11,6 +11,7 @@ import com.carousell.appCallBack.ListCallBack;
 import com.carousell.appCallBack.SortComparator;
 import com.carousell.data.dataModel.ArticleModel;
 import com.carousell.databinding.LayoutArticleBinding;
+import com.carousell.domain.domainModel.Article;
 import com.carousell.utils.AppUtils;
 import com.squareup.picasso.Picasso;
 
@@ -24,40 +25,40 @@ import timber.log.Timber;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleHolder> {
 
-    SortComparator sortComparator =  new SortComparator();
-    private ArrayList<ArticleModel> articleList = new ArrayList();
+    SortComparator sortComparator = new SortComparator();
+    private ArrayList<Article> articleList = new ArrayList();
     private ListCallBack listCall;
 
     public ArticleAdapter(ListCallBack listCall) {
         this.listCall = listCall;
     }
 
-    public void setComparator(SortComparator.TYPE sType){
+    public void setComparator(SortComparator.TYPE sType) {
 
-        if(sortComparator.getCompareType() == sType){
-            Timber.e("Compare type is already selected: "+sType);
+        if (sortComparator.getCompareType() == sType) {
+            Timber.e("Compare type is already selected: " + sType);
             return;
         }
 
         sortComparator.setCompareType(sType);
-        Collections.sort(articleList,sortComparator);
+        Collections.sort(articleList, sortComparator);
         notifyDataSetChanged();
 
         Timber.e("Sort: ");
         printContent();
     }
 
-    private void printContent(){
+    private void printContent() {
         Timber.e("---------------");
 
-        for (ArticleModel aModel: articleList) {
+        for (Article aModel : articleList) {
             Timber.e(aModel.getTitle());
         }
     }
 
-    public void setContent(ArrayList<ArticleModel> arrayList) {
+    public void setContent(ArrayList<Article> arrayList) {
         this.articleList = arrayList;
-        Collections.sort(articleList,sortComparator);
+        Collections.sort(articleList, sortComparator);
         notifyDataSetChanged();
     }
 
@@ -69,7 +70,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleHolder> {
         LayoutInflater inflater = (LayoutInflater) viewGroup.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        LayoutArticleBinding lBinding =  LayoutArticleBinding.inflate(inflater,viewGroup,false);
+        LayoutArticleBinding lBinding = LayoutArticleBinding.inflate(inflater, viewGroup, false);
         ArticleHolder holder = new ArticleHolder(lBinding);
 
 
@@ -79,19 +80,18 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleHolder> {
     @Override
     public void onBindViewHolder(@NonNull ArticleHolder articleHolder, int position) {
 
-        ArticleModel aModel = getItem(position);
+        Article aModel = getItem(position);
 
         Picasso.get().load(aModel.getBanner_url())
                 .into(articleHolder.lBinding.iBanner);
 
 
-        Context context = articleHolder.lBinding.iBanner.getContext();
+       // Context context = articleHolder.lBinding.iBanner.getContext();
+
         articleHolder.lBinding.tTitle.setText(aModel.getTitle());
         articleHolder.lBinding.tDesc.setText(aModel.getDescription());
 
-
-        String sText = getReadableDate(context,aModel.getTime_created());
-        articleHolder.lBinding.tDate.setText(sText);
+        articleHolder.lBinding.tDate.setText(aModel.getFormateDate());
     }
 
     @Override
@@ -99,27 +99,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleHolder> {
         return articleList.size();
     }
 
-    public ArticleModel getItem(int position) {
+    public Article getItem(int position) {
         return articleList.get(position);
     }
 
-    public  String getReadableDate(Context context,long time) {
-        long diff = System.currentTimeMillis() - (time * 1000);
-        int days = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-
-        Timber.e("Days: "+days);
-
-        if (days >= 365) {
-            return context.getString(R.string.yearsAgo, (days / 365));
-        } else if (days >= 30) {
-            return context.getString(R.string.monthsAgo, (days / 30));
-        } else if (days >= 7) {
-            return context.getString(R.string.weeksAgo, (days / 7));
-        } else {
-            return context.getString(R.string.daysAgo, (days));
-        }
-
-    }
 
 }
 

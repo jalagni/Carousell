@@ -22,13 +22,6 @@ public class AppUtils {
     }
 
 
-    public static boolean isConnectionAvailable(Context context) {
-        ConnectivityManager mgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = mgr.getActiveNetworkInfo();
-        return (netInfo != null) ? netInfo.isConnected() : false;
-    }
-
-
 
     public static String getDisplayDate(long time) {
         SimpleDateFormat sFormat = new SimpleDateFormat("dd MMM yyyy");

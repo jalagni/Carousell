@@ -30,21 +30,12 @@ public class AppDialog {
 
         aBuilder.setTitle(titleId)
                 .setMessage(msgId)
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                })
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dCallback.dialogCallback(AppConst.INVALID, DialogInterface.BUTTON_POSITIVE, null);
-                    }
+                .setNegativeButton(R.string.no, (dialogInterface, i) -> { })
+                .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                    dCallback.dialogCallback(AppConst.INVALID, DialogInterface.BUTTON_POSITIVE, null);
                 });
 
         aBuilder.create().show();
-
         Timber.e("Confirm Message");
     }
 

@@ -1,8 +1,8 @@
-package com.carousell.data.network;
+package com.carousell.data.exception;
 
 import com.carousell.data.dataConst.HttpConst;
 
-public class NetworkError extends Exception {
+public class NetworkError extends DataException {
     private HttpConst.Request rType;
     private String msg;
 
@@ -12,7 +12,10 @@ public class NetworkError extends Exception {
 
     }
 
-
+    @Override
+    public String getMessage() {
+        return msg;
+    }
 
     public HttpConst.Request getrType() {
         return rType;

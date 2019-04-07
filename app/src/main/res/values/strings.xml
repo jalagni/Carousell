@@ -9,8 +9,5 @@
     <string name="action_settings">Setting</string>
     <string name="action_recent">Recent</string>
     <string name="action_popular">Popular</string>
-    <string name="yearsAgo">%1$d years ago</string>
-    <string name="monthsAgo">%1$d months ago</string>
-    <string name="weeksAgo">%1$d weeks ago</string>
-    <string name="daysAgo">%1$d days ago</string>
+
 </resources>

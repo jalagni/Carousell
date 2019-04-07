@@ -1,8 +1,13 @@
 package com.carousell.data.network;
 
 
+import android.content.Context;
+
+import com.carousell.data.R;
 import com.carousell.data.dataConst.HttpConst;
 import com.carousell.data.dataModel.ResponseModel;
+import com.carousell.data.exception.NetworkError;
+import com.carousell.data.utils.HttpUtils;
 
 import io.reactivex.Emitter;
 import io.reactivex.ObservableEmitter;
@@ -15,29 +20,26 @@ public class RxSubscriber implements ObservableOnSubscribe, Callback {
 
     private HttpConst.Request rType;
     private Call<ResponseModel> callRequest;
+    private Context context;
     private Emitter emitter;
 
-    public RxSubscriber(Call call, HttpConst.Request rType) {
+    public RxSubscriber(Context context, Call call, HttpConst.Request rType) {
         this.callRequest = call;
         this.rType = rType;
+        this.context = context;
     }
 
 
     @Override
     public void onResponse(Call call, Response response) {
-        boolean state =  isValidResponse(response.code());
-        if(!state){
-            NetworkError nError = new NetworkError(rType,"Try Again");
+        boolean state = HttpUtils.isValidResponse(response.code());
+        if (!state) {
+            NetworkError nError = new NetworkError(rType, context.getString(R.string.tryLater));
             emitter.onError(nError);
             return;
         }
 
-        ResponseModel rModel = new ResponseModel(rType,response.body());
-
-
-        rModel.reqType = rType;
-
-        emitter.onNext(rModel);
+        emitter.onNext(response.body());
         emitter.onComplete();
     }
 
@@ -48,13 +50,13 @@ public class RxSubscriber implements ObservableOnSubscribe, Callback {
 
     @Override
     public void subscribe(ObservableEmitter emitter) throws Exception {
+        if (!HttpUtils.isConnectionAvailable(context)) {
+            emitter.onError(new NetworkError(rType, context.getString(R.string.check_internet)));
+            return;
+        }
+
         this.emitter = emitter;
         callRequest.enqueue(this);
-    }
-
-
-    private boolean isValidResponse(int httpCode) {
-        return (httpCode >= 200 && httpCode < 300);
     }
 
 }

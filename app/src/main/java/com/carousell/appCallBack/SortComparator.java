@@ -2,10 +2,11 @@ package com.carousell.appCallBack;
 
 
 import com.carousell.data.dataModel.ArticleModel;
+import com.carousell.domain.domainModel.Article;
 
 import java.util.Comparator;
 
-public class SortComparator implements Comparator<ArticleModel> {
+public class SortComparator implements Comparator<Article> {
 
     public enum TYPE{
         DATE,
@@ -16,7 +17,7 @@ public class SortComparator implements Comparator<ArticleModel> {
 
 
     @Override
-    public int compare(ArticleModel a1, ArticleModel a2) {
+    public int compare(Article a1, Article a2) {
 
         switch (cType){
             case DATE:

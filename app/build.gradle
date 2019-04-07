@@ -31,15 +31,11 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
-    rootProject.app.each { item ->
+
+    rootProject.presenter.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
-    rootProject.appSupport.each { item ->
-        add(item.configuration, item.dependency, item.options)
-    }
-    rootProject.annotationProcessorsDependencies.each { item ->
-        add(item.configuration, item.dependency, item.options)
-    }
+
     rootProject.unitTestsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
